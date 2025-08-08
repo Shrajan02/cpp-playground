@@ -9,9 +9,11 @@ private:
         int left = 2*i + 1, right = 2*i + 2;
         int largest = i;
 
+        // left child
         if (left < n && arr[left] > arr[largest]) {
             largest = left;
         }
+        // right child
         if (right < n && arr[right] > arr[largest]) {
             largest = right;
         }
@@ -29,6 +31,7 @@ public:
             max_heapify(arr, n, i);
         }
 
+        // swap largest from heap
         vector<int> heap = arr;  
         for (int i = n - 1; i > 0; i--) {
             std::swap(heap[0], heap[i]);
