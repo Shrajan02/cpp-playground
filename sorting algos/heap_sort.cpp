@@ -1,48 +1,45 @@
 // TC: O(N*logN)
-// SC: O(logN)
+// SC: O(N)
 #include <bits/stdc++.h>
 using namespace std;
 
-void min_heapify(vector<int>& arr, int i) {
-    int n = arr.size();
-    int left = 2*i + 1, right = 2*i + 2;
-    int smallest = i;
+class HeapSort {
+private:
+    void max_heapify(vector<int> &arr, int n, int i) {
+        int left = 2*i + 1, right = 2*i + 2;
+        int largest = i;
 
-    // left child
-    if (left < n && arr[i] > arr[left]) {
-        smallest = left;
-    }
-    
-    // right child
-    if (right < n && arr[smallest] > arr[right]) {
-        smallest = right;
-    }
+        if (left < n && arr[left] > arr[largest]) {
+            largest = left;
+        }
+        if (right < n && arr[right] > arr[largest]) {
+            largest = right;
+        }
 
-    if (smallest != i) {
-        std::swap(arr[i], arr[smallest]);
-        min_heapify(arr, smallest); // bubble up
-    }
-}
-
-vector<int> heapSort(vector<int>& arr, int n) {
-    // build min-heap
-    for (int i = n / 2 - 1; i >= 0; i--) {
-        min_heapify(arr, i);
+        if (largest != i) {
+            std::swap(arr[i], arr[largest]);
+            max_heapify(arr, n, largest); // bubble up
+        }
     }
 
-    // extract smallest from min-heap
-    vector<int> res;
-    while (!arr.empty()) {
-        swap(arr[0], arr.back());
-        res.push_back(arr.back());
-        arr.pop_back();
-        min_heapify(arr, 0);
+public:
+    vector<int> sort(vector<int> &arr, int n) {
+        // build max heap
+        for (int i = n/2 - 1; i >= 0; i--) {
+            max_heapify(arr, n, i);
+        }
+
+        vector<int> heap = arr;  
+        for (int i = n - 1; i > 0; i--) {
+            std::swap(heap[0], heap[i]);
+            max_heapify(heap, i, 0);  // re-heapify
+        }
+
+        return heap;
     }
+};
 
-    return res;
-}
-
-int main () {
+int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
@@ -51,10 +48,12 @@ int main () {
     while (cin >> val) {
         arr.push_back(val);
     }
-
     int n = arr.size();
-    vector<int> res = heapSort(arr, n);
-    for (int num: res) {
+
+    HeapSort hs;
+    vector<int> res = hs.sort(arr, n);
+
+    for (int num : res) {
         cout << num << " ";
     }
 
