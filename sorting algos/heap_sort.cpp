@@ -20,7 +20,7 @@ private:
 
         if (largest != i) {
             std::swap(arr[i], arr[largest]);
-            max_heapify(arr, n, largest); // bubble up
+            max_heapify(arr, n, largest); // bubble down
         }
     }
 
