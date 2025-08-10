@@ -4,7 +4,7 @@ using namespace std;
 void insertionSort(vector<int>& arr, int n) {
     // inserting the element into its correct position 
     // i -> unsorted portion (current element) 
-    // j -> sorted portion (backward counter check)
+    // j -> sorted portion (backward counter)
     for (int i = 1; i < n; i++) {
         int curr = arr[i];
         for (int j = i - 1; j >= 0; j--) {
