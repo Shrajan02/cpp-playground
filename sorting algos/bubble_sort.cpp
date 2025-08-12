@@ -1,3 +1,5 @@
+// TC: O(N^2)
+// SC: O(1)
 #include <bits/stdc++.h>
 using namespace std;
 
