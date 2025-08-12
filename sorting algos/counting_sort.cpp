@@ -1,13 +1,16 @@
+/*
+Create a frequency array of length max_element(arr) + 1,
+where each index corresponds to count of that element.
+Convert it into a cumulative frequency array.
+Using both these arrays, do a backward traversal over original array.
+*/
+
 // TC: O(N + maxi)
 // SC: O(N + maxi)
 #include <bits/stdc++.h>
 using namespace std;
 
 vector<int> countingSort(vector<int>& arr, int n) {
-    // create a frequency array of length max_element(arr) + 1
-    // where every index corresponds to unique element within that range
-    // convert it into a cumulative frequency array
-    // using both these arrays, do a backward traversal over original array
     int maxi = *max_element(arr.begin(), arr.end());
     vector<int> frequency(maxi + 1, 0);
     vector<int> res(n);

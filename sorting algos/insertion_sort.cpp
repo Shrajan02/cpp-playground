@@ -10,9 +10,10 @@ void insertionSort(vector<int>& arr, int n) {
     for (int i = 1; i < n; i++) {
         int curr = arr[i];
         for (int j = i - 1; j >= 0; j--) {
-            if (arr[j] > curr) {
-                std::swap(arr[j], arr[j + 1]);  
+            if (arr[j] <= curr) {
+                break;
             }
+            std::swap(arr[j], arr[j + 1]);
         }
     }
 }
